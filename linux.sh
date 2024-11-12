@@ -27,4 +27,36 @@ cat ~/.ssh/id_rsa.pub
 echo "Configuração concluída!"
 echo "Agora, adicione sua chave pública no GitHub ou em outro repositório remoto."
 
+# Start Crome
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+# Start vscode
+
+# Definir o nome do arquivo .deb
+FILE_NAME="code_1.95.2-1730981514_amd64.deb"
+
+# Baixar o arquivo .deb do Visual Studio Code
+echo "Baixando o Visual Studio Code..."
+curl -O https://update.code.visualstudio.com/1.95.2/linux-deb-x64/stable
+
+# Verificar se o arquivo foi baixado com sucesso
+if [[ ! -f "$FILE_NAME" ]]; then
+  echo "Erro ao baixar o arquivo. Verifique o link ou sua conexão."
+  exit 1
+fi
+
+# Instalar o pacote .deb usando dpkg
+echo "Instalando o Visual Studio Code..."
+sudo dpkg -i $FILE_NAME
+
+# Corrigir dependências, se necessário
+echo "Verificando e corrigindo dependências..."
+sudo apt-get install -f -y
+
+# Limpar o arquivo .deb após a instalação
+echo "Limpeza dos arquivos temporários..."
+rm $FILE_NAME
+
+echo "Instalação concluída! O Visual Studio Code foi instalado com sucesso."
+
+
