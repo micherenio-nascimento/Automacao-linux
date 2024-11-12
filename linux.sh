@@ -2,6 +2,22 @@
 echo "Atualizando repositórios e pacotes..."
 sudo apt update && sudo apt upgrade -y
 
+# Adicionar o layout de teclado Português (Brasil)
+echo "Configurando o layout de teclado para Português (Brasil)..."
+setxkbmap -layout br
+
+# Tornar a mudança persistente após reiniciar (para sistemas baseados em systemd)
+echo "Tornando o layout de teclado persistente..."
+
+# Configuração global do teclado usando localectl
+sudo localectl set-x11-keymap br
+
+# Mostrar a configuração atual do teclado
+echo "Layout de teclado atual:"
+setxkbmap -query
+
+echo "Configuração concluída!"
+
 # Instalar o Git
 echo "Instalando o Git..."
 sudo apt install -y git
